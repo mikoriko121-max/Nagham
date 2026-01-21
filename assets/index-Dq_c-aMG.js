@@ -425,5 +425,5 @@ const App = () => {
 };
 
 const root = document.getElementById("root");
-root && Nt.createRoot(root).render(a.jsx(App, {}));
+
 
