@@ -1,14 +1,86 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. Nagham Masharqeh Professional Portfolio</title>
-    <script type="module" crossorigin src="/Nagham/assets/index-Dq_c-aMG.js"></script>
-    <link rel="stylesheet" crossorigin href="/Nagham/assets/index-Blky0vRd.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>نغم مشريقة - السيرة الذاتية</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 10px; }
+    h1, h2 { color: #2c3e50; }
+    ul { padding-right: 20px; }
+    @media (max-width: 600px) { .two-columns { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // Personal Info
+    const Header = ({ lang }) => (
+      <header>
+        <h1>نغم مشريقة</h1>
+        <p>{lang === 'ar' ? 'دكتوراه في تاريخ الفلك | مطوّرة برمجيات | محاضرة رياضيات' : 'PhD in History of Astronomy | Software Developer | Mathematics Lecturer'}</p>
+        <button onClick={() => setLang('ar')}>العربية</button>
+        <button onClick={() => setLang('en')}>English</button>
+      </header>
+    );
+
+    // About
+    const About = ({ lang }) => (
+      <section>
+        <h2>{lang === 'ar' ? 'نبذة عني' : 'About Me'}</h2>
+        <p>{lang === 'ar' 
+          ? "أنا نغم مشريقة، حاصلة على شهادة دكتوراه في تاريخ العلوم الأساسية (تخصص تاريخ الفلك) من جامعة حلب..."
+          : "I am Nagham Mashariqa, holding a Ph.D. in History of Basic Sciences..."}
+        </p>
+      </section>
+    );
+
+    // Education
+    const Education = ({ lang }) => {
+      const items = lang === 'ar' ? [
+        { degree: "دكتوراه في تاريخ العلوم الأساسية (تخصص تاريخ الفلك)", inst: "جامعة حلب", year: "2025" },
+        { degree: "ماجستير في تاريخ العلوم الأساسية", inst: "جامعة حلب", year: "2020" },
+        { degree: "بكالوريوس هندسة نظم المعلومات", inst: "الجامعة الافتراضية السورية", year: "2019" },
+        { degree: "بكالوريوس رياضيات", inst: "جامعة حلب", year: "2013" }
+      ] : [
+        { degree: "PhD in History of Basic Sciences (Astronomy)", inst: "University of Aleppo", year: "2025" },
+        { degree: "Master's", inst: "University of Aleppo", year: "2020" },
+        { degree: "BSc in Information Systems Engineering", inst: "Syrian Virtual University", year: "2019" },
+        { degree: "BSc in Mathematics", inst: "University of Aleppo", year: "2013" }
+      ];
+      return (
+        <section>
+          <h2>{lang === 'ar' ? 'التحصيل العلمي' : 'Education'}</h2>
+          {items.map((item, i) => (
+            <div key={i}>
+              <h3>{item.degree}</h3>
+              <p>{item.inst} — {item.year}</p>
+            </div>
+          ))}
+        </section>
+      );
+    };
+
+    // App
+    const App = () => {
+      const [lang, setLang] = useState('ar');
+      return (
+        <div className="container">
+          <Header lang={lang} setLang={setLang} />
+          <About lang={lang} />
+          <Education lang={lang} />
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
 </html>
