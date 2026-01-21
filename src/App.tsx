@@ -15,7 +15,12 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-
+      <Header language={language} setLanguage={setLanguage} />
+      <About language={language} />
+      <Education language={language} />
+      <Experience language={language} />
+      <Research language={language} />
+      <Skills language={language} />
       <Training language={language} />
       <Conferences language={language} />
       <Volunteer language={language} />
